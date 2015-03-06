@@ -1,6 +1,6 @@
-SFL Multisite / Endor
-=====================
+Librairies Javascript / CKEditor widgets
+========================================
 
-Widgets CKEditor du projet SFL Multisite.
+Liste de widgets CKEditor, accessibles par tous.
 
 [Tutoriel pour en ajouter de nouveaux en ligne](http://docs.ckeditor.com/#!/guide/widget_sdk_tutorial_1)
