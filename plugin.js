@@ -1,13 +1,13 @@
 
-CKEDITOR.plugins.add( 'sflmswp', {
+CKEDITOR.plugins.add( 'sfl_widgets', {
     requires: 'widget',
 
-    icons: 'sflIcon,boitMessage',
-   
-    
+    icons: 'sflIcon,messageBox',
+
+
     init: function( editor ) {
         CKEDITOR.dialog.add( 'sflIcon', this.path + 'dialogs/sflIcon.js' );
-        //CKEDITOR.dialog.add( 'boitMessage', this.path + 'dialogs/boitMessage.js' );
+        //CKEDITOR.dialog.add( 'messageBox', this.path + 'dialogs/messageBox.js' );
 
         editor.widgets.add( 'sflIcon', {
 
@@ -60,16 +60,16 @@ CKEDITOR.plugins.add( 'sflmswp', {
                 this.oldData = CKEDITOR.tools.copy( newData );
             }
         } );
-        
-        editor.widgets.add( 'boitMessage', {
-            
-            button : 'Create à boit de message',
-            
+
+        editor.widgets.add( 'messageBox', {
+
+            button : 'Create a message box',
+
             template : '<div class="box--message">'+
-                        '<div class="title--form">Un petit texte de petit titre</div>'+
-                        '<p>  du text </p>'+
+                        '<div class="title--form">Box title</div>'+
+                        '<p>Box text (optionnal, remove it if you want)</p>'+
                         '</div>',
-            
+
             editables: {
                 title: {
                     selector: '.title--form',
@@ -85,16 +85,16 @@ CKEDITOR.plugins.add( 'sflmswp', {
 
             requiredContent: 'div(box--message)',
 
-            //dialog: 'boitMessage',
+            //dialog: 'messageBox',
 
             upcast: function( element ) {
                 return element.name == 'div' && element.hasClass( 'box--message' );
             },
-            
-            
+
+
         } );
-        
-        
+
+
         if (typeof editor.config.contentsCss == 'object') {
             editor.config.contentsCss.push(CKEDITOR.getUrl(this.path + 'contents.css'));
         }
