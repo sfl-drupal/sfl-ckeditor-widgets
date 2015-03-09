@@ -66,17 +66,17 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             button : 'Create a message box',
 
             template : '<div class="box--message">'+
-                        '<div class="title--form">Box title</div>'+
-                        '<p>Box text (optionnal, remove it if you want)</p>'+
-                        '</div>',
+                         '<h3 class="title--form">Box title</h3>'+
+                         '<div>Box text</div>'+
+                       '</div>',
 
             editables: {
                 title: {
-                    selector: '.title--form',
+                    selector: '.box--message > .title--form',
                     allowedContent: 'br strong em'
                 },
                 content: {
-                    selector: '.box--message > p',
+                    selector: '.box--message > div',
                     allowedContent: 'p br ul ol li strong em'
                 }
             },
