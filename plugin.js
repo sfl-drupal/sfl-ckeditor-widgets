@@ -51,7 +51,7 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
                 }
 
                 // Icons needs to be specified in order to apply formatting.
-                if ( newData.icon ) {
+                if ( newData.icon ) {x#
                     // Apply new .sflicon-* class.
                     this.element.addClass( 'sflicon-' + newData.icon );
                 }
