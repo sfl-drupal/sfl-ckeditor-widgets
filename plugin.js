@@ -32,38 +32,35 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             },
 
             init: function() {
-                if ( this.element.hasClass( 'sflicon' ) ){
-                    this.setData( 'icon', '' );
-                    // Remove the main class temporally to work with the other class easily
-                    this.element.removeClass( 'sflicon' );
+                var otherclass =  this.element.getAttribute( 'class' ).split(" "),
+                classre = new RegExp( '\\b^sflicon[-\w]+\\b' );
+                for (var i = 0; i < otherclass.length; i++) {
+                    var classtomatch = otherclass[i];
+                    var ma = classre.test(classtomatch);
+                    if (ma)
+                        this.setData( 'icon', otherclass[i] );
                 }
-                var otherclass =  this.element.getAttribute( 'class' ),
-                classre = new RegExp( '\b^sflicon-[a-z]+\b' );
-                if (classre.exec(otherclass) !== null)
-                    this.setData( 'icon', otherclass );
 
-                // Add the main class at the end.
-                this.element.addClass( 'sflicon' );
             },
 
             data: function() {
 
-                var newData = this.data,
-                    oldData = this.oldData;
+                var newClass = this.data,
+                    oldClass = this.oldClass;
 
                 // Remove old .sflicon-* class.
-                if ( oldData && newData.icon != oldData.icon ) {
-                    this.element.removeClass( 'sflicon-' + oldData.icon );
+                if ( oldClass && newClass.icon != oldClass.icon ) {
+                    this.element.removeClass( oldClass.icon );
                 }
 
                 // Icons needs to be specified in order to apply formatting.
-                if ( newData.icon ) {
+                if ( newClass.icon ) {
                     // Apply new .sflicon-* class.
-                    this.element.addClass( 'sflicon-' + newData.icon );
+                    this.element.addClass( newClass.icon );
                 }
 
                 // Save oldData.
-                this.oldData = CKEDITOR.tools.copy( newData );
+                this.oldClass = CKEDITOR.tools.copy( newClass );
             }
         } );
 

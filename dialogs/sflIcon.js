@@ -6,12 +6,12 @@ CKEDITOR.dialog.add( 'sflIcon', function( editor ) {
         contents: [
             {
                 id: 'info',
-                elements: [                    
+                elements: [
                     {
                         id: 'icon',
                         type: 'text',
                         label: 'CSS icon class',
-                        width: '50px',
+                        width: '150px',
                         setup: function( widget ) {
 				this.setValue( widget.data.icon );
                         },

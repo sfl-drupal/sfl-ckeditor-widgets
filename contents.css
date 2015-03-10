@@ -6,7 +6,7 @@
     border: 1px solid #ddd;
     box-shadow: 0 1px 1px #fff inset, 0 -1px 0px #ccc inset;
 }
-.title--form, .box--message > p {
+.title--form, .box--message > div {
     box-shadow: 0 1px 1px #ddd inset;
     border: 1px solid #cccccc;
     border-radius: 5px;
