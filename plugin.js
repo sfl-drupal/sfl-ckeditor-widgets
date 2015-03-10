@@ -32,12 +32,18 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             },
 
             init: function() {
-                if ( this.element.hasClass( 'sflicon' ) )
+                if ( this.element.hasClass( 'sflicon' ) ){
                     this.setData( 'icon', '' );
-                if ( this.element.hasClass( 'sflicon-sflvault' ) )
-                    this.setData( 'icon', 'sflvault' );
-                if ( this.element.hasClass( 'sflicon-sflring' ) )
-                    this.setData( 'icon', 'sflring' );
+                    // Remove the main class temporally to work with the other class easily
+                    this.element.removeClass( 'sflicon' );
+                }
+                var otherclass =  this.element.getAttribute( 'class' ),
+                classre = new RegExp( '\b^sflicon-[a-z]+\b' );
+                if (classre.exec(otherclass) !== null)
+                    this.setData( 'icon', otherclass );
+
+                // Add the main class at the end.
+                this.element.addClass( 'sflicon' );
             },
 
             data: function() {

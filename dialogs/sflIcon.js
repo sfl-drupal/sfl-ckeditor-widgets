@@ -9,13 +9,9 @@ CKEDITOR.dialog.add( 'sflIcon', function( editor ) {
                 elements: [                    
                     {
                         id: 'icon',
-                        type: 'select',
-                        label: 'Select icon',
-                        items: [
-                            [ '' ],
-                            [ 'sflvault' ],
-                            [ 'sflring' ],
-                        ],
+                        type: 'text',
+                        label: 'CSS icon class',
+                        width: '50px',
                         setup: function( widget ) {
 				this.setValue( widget.data.icon );
                         },
