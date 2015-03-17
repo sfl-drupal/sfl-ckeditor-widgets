@@ -10,10 +10,10 @@ CKEDITOR.dialog.add( 'sflIcon', function( editor ) {
                     {
                         id: 'icon',
                         type: 'text',
-                        label: 'CSS icon class',
+                        label: 'CSS icon class (should be like <strong>sflicon-classname</strong>)<br >Have a look to Font demo to see a complete icons list.',
                         width: '150px',
                         setup: function( widget ) {
-				this.setValue( widget.data.icon );
+                            this.setValue( widget.data.icon );
                         },
                         commit: function( widget ) {
                             widget.setData( 'icon', this.getValue() );
