@@ -2,7 +2,7 @@
 CKEDITOR.plugins.add( 'sfl_widgets', {
     requires: 'widget',
 
-    icons: 'sflIcon,messageBox',
+    icons: 'sflIcon,messageBox,communicationBox',
 
 
     init: function( editor ) {
@@ -92,6 +92,39 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
             upcast: function( element ) {
                 return element.name == 'div' && element.hasClass( 'box--message' );
+            },
+
+
+        } );
+
+        editor.widgets.add( 'communicationBox', {
+
+            button : 'Create a communication box',
+
+            template : '<div class="communicationBox">'+
+                          '<p class="communicationBox__title">Box title</p>'+
+                          '<div class="communicationBox__content">Box content</div>'+
+                        '</div>',
+
+            editables: {
+                title: {
+                    selector: '.communicationBox > .communicationBox__title',
+                    allowedContent: 'strong em'
+                },
+                content: {
+                    selector: '.communicationBox > .communicationBox__content',
+                    allowedContent: 'p br ul ol li strong em'
+                }
+            },
+
+            allowedContent: 'div(!communicationBox,communicationBox__title); p',
+
+            requiredContent: 'div(communicationBox)',
+
+            //dialog: 'communicationBox',
+
+            upcast: function( element ) {
+                return element.name == 'div' && element.hasClass( 'communicationBox' );
             },
 
 
