@@ -38,24 +38,28 @@
 
 /*.communicationBox.danger {
     border-color: #a94442;
+    background-color: #f2dede;
 }
 .danger .communicationBox__title {
     background-color: #a94442;
 }
 .communicationBox.warning {
     border-color: #8a6d3b;
+    background-color: #fcf8e3;
 }
 .warning .communicationBox__title {
     background-color: #8a6d3b;
 }
 .communicationBox.info {
     border-color: #31708f;
+    background-color: #d9edf7;
 }
 .info .communicationBox__title {
     background-color: #31708f;
 }
 .communicationBox.success {
     border-color: #3c763d;
+    background-color: #dff0d8;
 }
 .success .communicationBox__title {
     background-color: #3c763d;
