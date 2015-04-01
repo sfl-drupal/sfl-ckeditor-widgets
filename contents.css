@@ -36,31 +36,31 @@
     margin: 15px;
 }
 
-/*.communicationBox.danger {
+.communicationBox.red {
     border-color: #a94442;
     background-color: #f2dede;
 }
-.danger .communicationBox__title {
+.red .communicationBox__title {
     background-color: #a94442;
 }
-.communicationBox.warning {
+.communicationBox.yellow {
     border-color: #8a6d3b;
     background-color: #fcf8e3;
 }
-.warning .communicationBox__title {
+.yellow .communicationBox__title {
     background-color: #8a6d3b;
 }
-.communicationBox.info {
+.communicationBox.blue {
     border-color: #31708f;
     background-color: #d9edf7;
 }
-.info .communicationBox__title {
+.blue .communicationBox__title {
     background-color: #31708f;
 }
-.communicationBox.success {
+.communicationBox.green {
     border-color: #3c763d;
     background-color: #dff0d8;
 }
-.success .communicationBox__title {
+.green .communicationBox__title {
     background-color: #3c763d;
-}*/
+}

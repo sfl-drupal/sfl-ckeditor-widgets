@@ -13,11 +13,11 @@ CKEDITOR.dialog.add( 'communicationBox', function( editor ) {
                         label: 'Level',
                         width: '150px',
                         items: [
-                            [ 'None (noir)', '' ]
-                            // [ 'Danger (rouge)' , 'danger' ],
-                            // [ 'Alerte (jaune)' , 'warning' ],
-                            // [ 'Info (bleu)' , 'info' ],
-                            // [ 'Succès (vert)', 'success' ]
+                            [ 'Noir', '' ],
+                            [ 'Rouge' , 'red' ],
+                            [ 'Jaune' , 'yellow' ],
+                            [ 'Bleu' , 'blue' ],
+                            [ 'Vert', 'green' ]
                         ],
                         setup: function( widget ) {
                             this.setValue( widget.data.level );

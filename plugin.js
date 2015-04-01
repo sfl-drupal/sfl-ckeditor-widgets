@@ -88,7 +88,7 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             //     }
             // },
 
-            allowedContent: 'dl(!communicationBox,danger,warning,info,success); dt(!communicationBox__title); dd(!communicationBox__content)',
+            allowedContent: 'dl(!communicationBox,red,yellow,blue,green); dt(!communicationBox__title); dd(!communicationBox__content)',
 
             requiredContent: 'dl(communicationBox)',
 
@@ -100,8 +100,17 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
                     boxTitle = box.getChildren().getItem(0),
                     boxContent = box.getChildren().getItem(1);
 
-                if (typeof this.data.level !== 'undefined')
+                if (typeof this.data.level !== 'undefined') {
+                    if (this.element.hasClass('red'))
+                        this.element.removeClass('red');
+                    if (this.element.hasClass('yellow'))
+                        this.element.removeClass('yellow');
+                    if (this.element.hasClass('blue'))
+                        this.element.removeClass('blue');
+                    if (this.element.hasClass('green'))
+                        this.element.removeClass('green');
                     this.element.addClass(this.data.level);
+                }
                 if (typeof this.data.title !== 'undefined' && boxTitle.hasClass('communicationBox__title'))
                     boxTitle.setHtml(this.data.title);
                 if (typeof this.data.content !== 'undefined' && boxContent.hasClass('communicationBox__content'))
@@ -113,14 +122,14 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
                 // Level recognition
                 this.setData('level', '');
-                if (this.element.hasClass('danger'))
-                    this.setData('level', 'danger');
-                if (this.element.hasClass('warning'))
-                    this.setData('level', 'warning');
-                if (this.element.hasClass('info'))
-                    this.setData('level', 'info');
-                if (this.element.hasClass('success'))
-                    this.setData('level', 'success');
+                if (this.element.hasClass('red'))
+                    this.setData('level', 'red');
+                if (this.element.hasClass('yellow'))
+                    this.setData('level', 'yellow');
+                if (this.element.hasClass('blue'))
+                    this.setData('level', 'blue');
+                if (this.element.hasClass('green'))
+                    this.setData('level', 'green');
 
                 // Title and content recognition
                 var title = this.element.getChildren().getItem(0),
