@@ -68,30 +68,33 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
             button : 'Create a message box',
 
-            template : '<div class="box--message">'+
-                         '<h3 class="title--form">Box title</h3>'+
-                         '<div>Box text</div>'+
+            template : '<div class="box--message__wrapper">'+
+                         '<dl class="box--message">'+
+                           '<dt class="box--message__title">Box title</dt>'+
+                           '<dd class="box--message__content">Box content</dd>'+
+                         '</dl>'+
                        '</div>',
 
             editables: {
                 title: {
-                    selector: '.box--message > .title--form',
-                    allowedContent: 'br strong em'
+                    selector: '.box--message__title',
+                    allowedContent: 'strong em'
                 },
                 content: {
-                    selector: '.box--message > div',
-                    allowedContent: 'p br ul ol li strong em'
+                    selector: '.box--message__content',
+                    allowedContent: 'strong em'
                 }
             },
 
-            allowedContent: 'div(!box--message,title--form); p',
+            allowedContent: 'div(!box--message__wrapper); dl(!box--message); dt(!box--message__title); dd(!box--message__content)',
 
-            requiredContent: 'div(box--message)',
+            // requiredContent: 'dl(box--message)',
 
             //dialog: 'messageBox',
 
             upcast: function( element ) {
-                return element.name == 'div' && element.hasClass( 'box--message' );
+                console
+                return element.name == 'div' && element.hasClass( 'box--message__wrapper' );
             },
 
 
@@ -101,30 +104,32 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
             button : 'Create a communication box',
 
-            template : '<div class="communicationBox">'+
-                          '<p class="communicationBox__title">Box title</p>'+
-                          '<div class="communicationBox__content">Box content</div>'+
-                        '</div>',
+            template : '<div class="communicationBox__wrapper">'+
+                         '<dl class="communicationBox">'+
+                           '<dt class="communicationBox__title">Box title</dt>'+
+                           '<dd class="communicationBox__content">Box content</dd>'+
+                         '</dl>'+
+                       '</div>',
 
             editables: {
                 title: {
-                    selector: '.communicationBox > .communicationBox__title',
+                    selector: '.communicationBox__title',
                     allowedContent: 'strong em'
                 },
                 content: {
-                    selector: '.communicationBox > .communicationBox__content',
-                    allowedContent: 'p br ul ol li strong em'
+                    selector: '.communicationBox__content',
+                    allowedContent: 'strong em'
                 }
             },
 
-            allowedContent: 'div(!communicationBox,communicationBox__title); p',
+            allowedContent: 'div(!communicationBox__wrapper); dl(!communicationBox); dt(!communicationBox__title); dd(!communicationBox__content)',
 
-            requiredContent: 'div(communicationBox)',
+            // requiredContent: 'dl(communicationBox)',
 
             //dialog: 'communicationBox',
 
             upcast: function( element ) {
-                return element.name == 'div' && element.hasClass( 'communicationBox' );
+                return element.name == 'div' && element.hasClass( 'communicationBox__wrapper' );
             },
 
 
