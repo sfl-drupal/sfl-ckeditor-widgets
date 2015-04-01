@@ -35,3 +35,28 @@
 .communicationBox__content {
     margin: 15px;
 }
+
+/*.communicationBox.danger {
+    border-color: #a94442;
+}
+.danger .communicationBox__title {
+    background-color: #a94442;
+}
+.communicationBox.warning {
+    border-color: #8a6d3b;
+}
+.warning .communicationBox__title {
+    background-color: #8a6d3b;
+}
+.communicationBox.info {
+    border-color: #31708f;
+}
+.info .communicationBox__title {
+    background-color: #31708f;
+}
+.communicationBox.success {
+    border-color: #3c763d;
+}
+.success .communicationBox__title {
+    background-color: #3c763d;
+}*/

@@ -2,12 +2,13 @@
 CKEDITOR.plugins.add( 'sfl_widgets', {
     requires: 'widget',
 
-    icons: 'sflIcon,messageBox,communicationBox',
+    icons: 'sflIcon,communicationBox,messageBox',
 
 
     init: function( editor ) {
         CKEDITOR.dialog.add( 'sflIcon', this.path + 'dialogs/sflIcon.js' );
-        //CKEDITOR.dialog.add( 'messageBox', this.path + 'dialogs/messageBox.js' );
+        CKEDITOR.dialog.add( 'communicationBox', this.path + 'dialogs/communicationBox.js' );
+        CKEDITOR.dialog.add( 'messageBox', this.path + 'dialogs/messageBox.js' );
 
         editor.widgets.add( 'sflIcon', {
 
@@ -64,72 +65,132 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             }
         } );
 
+        editor.widgets.add( 'communicationBox', {
+
+            // Button label
+            button : 'Create a communication box',
+
+            // Default template
+            template : '<dl class="communicationBox">'+
+                         '<dt class="communicationBox__title">Title</dt>'+
+                         '<dd class="communicationBox__content">Content</dd>'+
+                       '</dl >',
+
+            // Editables elements
+            // editables: {
+            //     title: {
+            //         selector: '.communicationBox__title',
+            //         allowedContent: 'strong em'
+            //     },
+            //     content: {
+            //         selector: '.communicationBox__content',
+            //         allowedContent: 'strong em'
+            //     }
+            // },
+
+            allowedContent: 'dl(!communicationBox,danger,warning,info,success); dt(!communicationBox__title); dd(!communicationBox__content)',
+
+            requiredContent: 'dl(communicationBox)',
+
+            dialog: 'communicationBox',
+
+            // Callback launched each time widget datas are modified
+            data: function() {
+                var commBox = this.element,
+                    html = '';
+
+                if (typeof this.data.title !== 'undefined')
+                    html += '<dt class="communicationBox__title">' + this.data.title + '</dt>';
+
+                if (typeof this.data.content !== 'undefined')
+                    html += '<dt class="communicationBox__content">' + this.data.content + '</dt>';
+
+                if (html !== '') {
+                    if (typeof this.data.level !== 'undefined')
+                        this.element.addClass(this.data.level);
+                    this.element.setHtml(html);
+                }
+            },
+
+            // Widget initialization
+            init: function() {
+
+                // Level recognition
+                this.setData('level', '');
+                if (this.element.hasClass('danger'))
+                    this.setData('level', 'danger');
+                if (this.element.hasClass('warning'))
+                    this.setData('level', 'warning');
+                if (this.element.hasClass('info'))
+                    this.setData('level', 'info');
+                if (this.element.hasClass('success'))
+                    this.setData('level', 'success');
+
+                // Title and content recognition
+                var title = this.element.getChildren().getItem(0);
+                var content = this.element.getChildren().getItem(1);
+                if (title.hasClass('communicationBox__title'))
+                    this.setData('title', title.getHtml());
+                if (content.hasClass('communicationBox__content'))
+                    this.setData('content', content.getHtml());
+            },
+
+            // Widget recognition
+            upcast: function( element ) {
+                return element.name == 'dl' && element.hasClass( 'communicationBox' );
+            },
+
+        } );
+
         editor.widgets.add( 'messageBox', {
 
             button : 'Create a message box',
 
-            template : '<div class="box--message__wrapper">'+
-                         '<dl class="box--message">'+
-                           '<dt class="box--message__title">Box title</dt>'+
-                           '<dd class="box--message__content">Box content</dd>'+
-                         '</dl>'+
-                       '</div>',
+            template : '<dl class="box--message">'+
+                         '<dt class="box--message__title">Title</dt>'+
+                         '<dd class="box--message__content">Content</dd>'+
+                       '</dl>',
 
-            editables: {
-                title: {
-                    selector: '.box--message__title',
-                    allowedContent: 'strong em'
-                },
-                content: {
-                    selector: '.box--message__content',
-                    allowedContent: 'strong em'
-                }
+            // editables: {
+            //     title: {
+            //         selector: '.box--message__title',
+            //         allowedContent: 'strong em'
+            //     },
+            //     content: {
+            //         selector: '.box--message__content',
+            //         allowedContent: 'strong em'
+            //     }
+            // },
+
+            allowedContent: 'dl(!box--message); dt(!box--message__title); dd(!box--message__content)',
+
+            requiredContent: 'dl(box--message)',
+
+            dialog: 'messageBox',
+
+            data: function() {
+                var commBox = this.element,
+                    html = '';
+                if (typeof this.data.title !== 'undefined')
+                    html += '<dt class="box--message__title">' + this.data.title + '</dt>';
+                if (typeof this.data.content !== 'undefined')
+                    html += '<dt class="box--message__content">' + this.data.content + '</dt>';
+                if (html !== '')
+                    this.element.setHtml(html);
             },
 
-            allowedContent: 'div(!box--message__wrapper); dl(!box--message); dt(!box--message__title); dd(!box--message__content)',
+            init: function() {
 
-            // requiredContent: 'dl(box--message)',
-
-            //dialog: 'messageBox',
+                var title = this.element.getChildren().getItem(0);
+                var content = this.element.getChildren().getItem(1);
+                if (title.hasClass('box--message__title'))
+                    this.setData('title', title.getHtml());
+                if (content.hasClass('box--message__content'))
+                    this.setData('content', content.getHtml());
+            },
 
             upcast: function( element ) {
-                console
-                return element.name == 'div' && element.hasClass( 'box--message__wrapper' );
-            },
-
-
-        } );
-
-        editor.widgets.add( 'communicationBox', {
-
-            button : 'Create a communication box',
-
-            template : '<div class="communicationBox__wrapper">'+
-                         '<dl class="communicationBox">'+
-                           '<dt class="communicationBox__title">Box title</dt>'+
-                           '<dd class="communicationBox__content">Box content</dd>'+
-                         '</dl>'+
-                       '</div>',
-
-            editables: {
-                title: {
-                    selector: '.communicationBox__title',
-                    allowedContent: 'strong em'
-                },
-                content: {
-                    selector: '.communicationBox__content',
-                    allowedContent: 'strong em'
-                }
-            },
-
-            allowedContent: 'div(!communicationBox__wrapper); dl(!communicationBox); dt(!communicationBox__title); dd(!communicationBox__content)',
-
-            // requiredContent: 'dl(communicationBox)',
-
-            //dialog: 'communicationBox',
-
-            upcast: function( element ) {
-                return element.name == 'div' && element.hasClass( 'communicationBox__wrapper' );
+                return element.name == 'dl' && element.hasClass( 'box--message' );
             },
 
 
