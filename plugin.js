@@ -96,20 +96,16 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
             // Callback launched each time widget datas are modified
             data: function() {
-                var commBox = this.element,
-                    html = '';
+                var box = this.element,
+                    boxTitle = box.getChildren().getItem(0),
+                    boxContent = box.getChildren().getItem(1);
 
-                if (typeof this.data.title !== 'undefined')
-                    html += '<dt class="communicationBox__title">' + this.data.title + '</dt>';
-
-                if (typeof this.data.content !== 'undefined')
-                    html += '<dt class="communicationBox__content">' + this.data.content + '</dt>';
-
-                if (html !== '') {
-                    if (typeof this.data.level !== 'undefined')
-                        this.element.addClass(this.data.level);
-                    this.element.setHtml(html);
-                }
+                if (typeof this.data.level !== 'undefined')
+                    this.element.addClass(this.data.level);
+                if (typeof this.data.title !== 'undefined' && boxTitle.hasClass('communicationBox__title'))
+                    boxTitle.setHtml(this.data.title);
+                if (typeof this.data.content !== 'undefined' && boxContent.hasClass('communicationBox__content'))
+                    boxContent.setHtml(this.data.content);
             },
 
             // Widget initialization
@@ -127,8 +123,8 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
                     this.setData('level', 'success');
 
                 // Title and content recognition
-                var title = this.element.getChildren().getItem(0);
-                var content = this.element.getChildren().getItem(1);
+                var title = this.element.getChildren().getItem(0),
+                    content = this.element.getChildren().getItem(1);
                 if (title.hasClass('communicationBox__title'))
                     this.setData('title', title.getHtml());
                 if (content.hasClass('communicationBox__content'))
@@ -169,20 +165,20 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             dialog: 'messageBox',
 
             data: function() {
-                var commBox = this.element,
-                    html = '';
-                if (typeof this.data.title !== 'undefined')
-                    html += '<dt class="box--message__title">' + this.data.title + '</dt>';
-                if (typeof this.data.content !== 'undefined')
-                    html += '<dt class="box--message__content">' + this.data.content + '</dt>';
-                if (html !== '')
-                    this.element.setHtml(html);
+                var box = this.element,
+                    boxTitle = box.getChildren().getItem(0),
+                    boxContent = box.getChildren().getItem(1);
+
+                if (typeof this.data.title !== 'undefined' && boxTitle.hasClass('box--message__title'))
+                    boxTitle.setHtml(this.data.title);
+                if (typeof this.data.content !== 'undefined' && boxContent.hasClass('box--message__content'))
+                    boxContent.setHtml(this.data.content);
             },
 
             init: function() {
+                var title = this.element.getChildren().getItem(0),
+                    content = this.element.getChildren().getItem(1);
 
-                var title = this.element.getChildren().getItem(0);
-                var content = this.element.getChildren().getItem(1);
                 if (title.hasClass('box--message__title'))
                     this.setData('title', title.getHtml());
                 if (content.hasClass('box--message__content'))
