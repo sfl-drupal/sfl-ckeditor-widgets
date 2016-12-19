@@ -6,15 +6,13 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
 
     init: function( editor ) {
-        CKEDITOR.dialog.add( 'sflIcon', this.path + 'dialogs/sflIcon.js' );
-        CKEDITOR.dialog.add( 'communicationBox', this.path + 'dialogs/communicationBox.js' );
-        CKEDITOR.dialog.add( 'messageBox', this.path + 'dialogs/messageBox.js' );
 
+        CKEDITOR.dialog.add( 'sflIcon', this.path + 'dialogs/sflIcon.js' );
         editor.widgets.add( 'sflIcon', {
 
             button: 'Create a simple icon',
 
-            template: '<i class="sflicon"></i>',
+            template: '<i class="sflicon">&nbsp;</i>',
 
             allowedContent: 'i(!sflicon*)',
 
@@ -64,7 +62,13 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
                 this.oldClass = CKEDITOR.tools.copy( newClass );
             }
         } );
+        editor.ui.addButton( 'sflIcon', {
+            label : 'Create a simple icon',
+            command : 'sflIcon',
+            icons : CKEDITOR.getUrl(this.path + 'icons/sflIcon.png')
+        } );
 
+        CKEDITOR.dialog.add( 'communicationBox', this.path + 'dialogs/communicationBox.js' );
         editor.widgets.add( 'communicationBox', {
 
             // Button label
@@ -101,6 +105,8 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
                     boxContent = box.getChildren().getItem(1);
 
                 if (typeof this.data.level !== 'undefined') {
+                    if (this.element.hasClass('black'))
+                        this.element.removeClass('black');
                     if (this.element.hasClass('red'))
                         this.element.removeClass('red');
                     if (this.element.hasClass('yellow'))
@@ -121,7 +127,7 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             init: function() {
 
                 // Level recognition
-                this.setData('level', '');
+                this.setData('level', 'black');
                 if (this.element.hasClass('red'))
                     this.setData('level', 'red');
                 if (this.element.hasClass('yellow'))
@@ -146,7 +152,13 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
             },
 
         } );
+        editor.ui.addButton( 'communicationBox', {
+            label : 'Create a communication box',
+            command : 'communicationBox',
+            icons : CKEDITOR.getUrl(this.path + 'icons/communicationBox.png')
+        } );
 
+        CKEDITOR.dialog.add( 'messageBox', this.path + 'dialogs/messageBox.js' );
         editor.widgets.add( 'messageBox', {
 
             button : 'Create a message box',
@@ -200,13 +212,16 @@ CKEDITOR.plugins.add( 'sfl_widgets', {
 
 
         } );
+        editor.ui.addButton( 'messageBox', {
+            label : 'Create a message box',
+            command : 'messageBox',
+            icons : CKEDITOR.getUrl(this.path + 'icons/messageBox.png')
+        } );
 
 
         if (typeof editor.config.contentsCss == 'object') {
             editor.config.contentsCss.push(CKEDITOR.getUrl(this.path + 'contents.css'));
-        }
-
-        else {
+        } else {
             editor.config.contentsCss = [editor.config.contentsCss, CKEDITOR.getUrl(this.path + 'contents.css')];
         }
     }

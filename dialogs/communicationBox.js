@@ -13,7 +13,7 @@ CKEDITOR.dialog.add( 'communicationBox', function( editor ) {
                         label: 'Level',
                         width: '150px',
                         items: [
-                            [ 'Noir', '' ],
+                            [ 'Noir', 'black' ],
                             [ 'Rouge' , 'red' ],
                             [ 'Jaune' , 'yellow' ],
                             [ 'Bleu' , 'blue' ],
